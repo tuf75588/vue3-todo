@@ -1,17 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <form @submit="addNewTodo">
+    <label name="newTodo">New Todo</label>
+    <input
+      type="text"
+      v-model="newTodo"
+      id="newTodo"
+      placeholder="add new todo"
+    />
+    <button type="submit">Submit</button>
+  </form>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { ref } from 'vue';
+// eslint-disable-next-line
+const newTodo = ref('');
+console.log(newTodo.value);
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  setup() {
+    function addNewTodo(e) {
+      e.preventDefault();
+      console.log('adding a new todo ');
+    }
+    return { newTodo, addNewTodo };
+  },
+};
 </script>
 
 <style>
